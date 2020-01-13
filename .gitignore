@@ -1,0 +1,3 @@
+# ignore an entire directory
+/service-BlueGo/node_modules/
+/front-BlueGo2/

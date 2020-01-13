@@ -1,2 +1,2 @@
-# Blue-GO
-Transport
+# BlueGo
+Transportation application
