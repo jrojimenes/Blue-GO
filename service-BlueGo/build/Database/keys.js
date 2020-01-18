@@ -6,7 +6,7 @@ exports.default = {
         host: 'localhost',
         user: 'bluegoAdmin',
         password: 'D3v3L0p',
-        database: 'db_blueGo'
+        database: 'db_bluego'
     },
     server: {
         port: 3000
