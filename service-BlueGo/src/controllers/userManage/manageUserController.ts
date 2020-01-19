@@ -30,6 +30,7 @@ class manageUsrCtl {
         
         , function(err, result){
             if(err) throw err;
+            console.log(result);
             if(result.insertId != 0){                                                                                     
                 requestResult = {
                     STATUS : operationUsrEnum.newUsrSuccess,
