@@ -1,0 +1,214 @@
+ <!-- Log In page -->
+ <div class="row vh-100 ">
+        <div class="col-12 align-self-center">
+            <div class="container-fluid">
+                <div class="card auth-card shadow-lg"> <!--este-->
+                    <div class="card-body">
+                        <div class="px-2">
+                            <div class="auth-logo-box">
+                                <a href="/" class="logo logo-admin"><img src="../../../assets/images/logo-sm.png" height="85" alt="logo" class="auth-logo"></a>
+                            </div><!--end auth-logo-box-->
+                            
+                            <div class="text-center auth-logo-text">
+                                <h4 class="mt-0 mb-3 mt-5">Registrate en Blue Go!</h4>
+                            </div> <!--end auth-logo-text-->  
+                            <form [formGroup]="RegisterForm"(ngSubmit)="onRegister()">
+                            <div class="row">
+                            <div class="col-md-3">
+                                    <div class="ribbon-1">
+                                        <div class="ribbon-box">
+                                            <div class="ribbon ribbon-mark ribbon-right bg-primary">Selección de ruta</div>
+                                            <div class="form-group">
+                                                    <label for="periodCont" class="control-label">Periodo de contratación</label>
+                                                    <select [formControl]="RegisterForm.controls['periodName']" id="periodCont" class="form-control">
+                                                            <option [value]="0">----Selecciona el periodo----</option>
+                                                              <option *ngFor="let item of periodContract; let x = index" [value]="periodContract[x].fiId">
+                                                                {{periodContract[x].fcName}}
+                                                              </option>
+                                                            </select>
+                                                  
+                                                      <label for="routeNm" class="control-label">Seleccionar Ruta</label>
+                                                      <select class="form-control" (change)="routeChanged($event.target.value)" [formControl]="RegisterForm.controls['routeName']" id="routeNm">
+                                                            <option [value]="0">----Selecciona la ruta----</option>
+                                                            <option *ngFor="let suit of routes" [ngValue]="suit.fiId">
+                                                                {{suit.fcName}}
+                                                            </option>
+                                                      </select>   
+                                                  </div><!--end form-group--> 
+                                        </div>
+                                    </div>
+                        </div>
+                        <div class="col-md-3">
+                                    <div class="ribbon-1">
+                                            <div class="ribbon-box">
+                                                <div class="ribbon ribbon-mark ribbon-right bg-primary">Datos Personales</div>
+                                                <div class="form-group">
+                                                        <label for="username">Nombre(s)</label>
+                                                        <div class="input-group mb-3">
+                                                                <span class="auth-form-icon">
+                                                                    <i class="dripicons-user"></i> 
+                                                                </span>     
+                                                        <mat-form-field>
+                                                                <input type="text" matInput  class="form-control" [formControl]="RegisterForm.controls['username']" >
+                                                        </mat-form-field>
+                                                        </div>
+                                                              <mat-error *ngIf="RegisterForm.controls['username'].hasError('required') && RegisterForm.controls['username'].touched">
+                                                                    Debes ingresar tu nombre.
+                                                                  </mat-error>
+                                                    </div><!--end form-group--> 
+                                                   <div class="form-group">
+                                                      <label for="username">Apellido Materno</label>
+                                                        <div class="input-group mb-3">
+                                                          <span class="auth-form-icon">
+                                                              <i class="dripicons-user"></i> 
+                                                          </span>                                                                                                              
+                                                          <mat-form-field>
+                                                                <input type="text" matInput  class="form-control" [formControl]="RegisterForm.controls['secondName']" >
+                                                        </mat-form-field>
+                                                          </div>                             
+                                                          <mat-error *ngIf="RegisterForm.controls['secondName'].hasError('required') && RegisterForm.controls['secondName'].touched">
+                                                                Debes ingresar tu apellido materno.
+                                                              </mat-error>
+                                                    </div><!--end form-group--> 
+                                                    <div class="form-group">
+                                                      <label for="username">Apellido Paterno</label>
+                                                      <div class="input-group mb-3">
+                                                          <span class="auth-form-icon">
+                                                              <i class="dripicons-user"></i> 
+                                                          </span>                                                                                                              
+                                                          <mat-form-field>
+                                                                <input type="text" matInput  class="form-control" [formControl]="RegisterForm.controls['lastName']" >
+                                                        </mat-form-field>
+                                                      </div>
+                                                      <mat-error *ngIf="RegisterForm.controls['secondName'].hasError('required') && RegisterForm.controls['lastName'].touched">
+                                                            Debes ingresar tu apellido paterno.
+                                                          </mat-error>
+                                                  </div><!--end form-group--> 
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                            <div class="ribbon-1">
+                                                    <div class="ribbon-box">
+                                                        <div class="ribbon ribbon-mark ribbon-right bg-primary">Datos académicos</div>
+                                            <div class="form-group">
+                                                    <label for="username">Matrícula</label>
+                                                    <div class="input-group mb-3">
+                                                        <span class="auth-form-icon">
+                                                            <i class="dripicons-user-id"></i> 
+                                                        </span>                                                                                                              
+                                                        <mat-form-field>
+                                                                <input type="text" matInput  class="form-control" [formControl]="RegisterForm.controls['mat_idUser']" >
+                                                        </mat-form-field>
+                                                    </div>
+                                                    <mat-error *ngIf="RegisterForm.controls['mat_idUser'].hasError('required') && RegisterForm.controls['mat_idUser'].touched">
+                                                            Debes ingresar tu matrícula.
+                                                          </mat-error>
+                                                </div><!--end form-group--> 
+                                                
+                                                <div class="form-group">
+                                                <label for="campus" class="control-label">Campus</label>
+                                                <select formControlName="campusName" id="campus" class="form-control">
+                                                    <option [value]="0">----Selecciona el campus----</option>
+                                                      <option *ngFor="let item of campus; let i = index" [value]="campus[i].fiId">
+                                                        {{campus[i].fcName}}
+                                                      </option>
+                                                    </select>
+                                              </div><!--end form-group--> 
+                                              <div class="form-group">
+                                                  <label for="acadGrad" class="control-label">Grado académico</label>
+                                                  <select formControlName="gradeName" id="acadGrad" class="form-control">
+                                                          <option [value]="0">----Selecciona el grado----</option>
+                                                            <option *ngFor="let item of colleges; let r = index" [value]="colleges[r].fiId">
+                                                              {{colleges[r].fcName}}
+                                                            </option>
+                                                          </select>
+                                                </div><!--end form-group--> 
+                                    </div>
+                                    </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                            <div class="ribbon-1">
+                                                    <div class="ribbon-box">
+                                                        <div class="ribbon ribbon-mark ribbon-right bg-primary">Datos de contacto</div>
+                                                        <div class="form-group">
+                                                                <label for="useremail">Email</label>
+                                                                <div class="input-group mb-3">
+                                                                    <span class="auth-form-icon">
+                                                                        <i class="dripicons-mail"></i> 
+                                                                    </span>                                                                                                              
+                                                                    <mat-form-field>
+                                                                            <input type="text" matInput  class="form-control" [formControl]="RegisterForm.controls['useremail']" >
+                                                                    </mat-form-field>
+                                                                </div>     
+                                                                <mat-error *ngIf="RegisterForm.controls['useremail'].hasError('required') && RegisterForm.controls['useremail'].touched">
+                                                                        Debes proporcionar un correo electrónico.
+                                                                      </mat-error>                     
+                                                            </div><!--end form-group-->
+                                                                
+                                                                <div class="form-group">
+                                                                    <label for="mo_number">Teléfono</label>                                            
+                                                                    <div class="input-group mb-3"> 
+                                                                        <span class="auth-form-icon">
+                                                                            <i class="dripicons-phone"></i> 
+                                                                        </span>                                                       
+                                                                        <mat-form-field>
+                                                                                <input type="text" matInput  class="form-control" [formControl]="RegisterForm.controls['mo_number']" >
+                                                                        </mat-form-field>
+                                                                    </div>                               
+                                                                    <mat-error *ngIf="RegisterForm.controls['mo_number'].hasError('required') && RegisterForm.controls['mo_number'].touched">
+                                                                            Debes proporcionar un teléfono en formato de 10 digitos.
+                                                                          </mat-error>   
+                                                                </div><!--end form-group--> 
+                                </div>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="align-self-center">
+                            <button class="btn btn-primary waves-effect waves-light" type="submit" [disabled]="!RegisterForm.valid">Guardar información</button>
+                            </div>
+                             <!-- Small modal -->
+                           <button type="button" id="idModalHours"  style="display: none;" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-center">Center modal</button>     
+                        </form>
+                        
+                        </div><!--end /div-->                
+                    </div><!--end card-body-->
+                </div><!--end card-->
+            </div><!--end auth-card-->
+        </div><!--end col-->           
+      </div><!--end row-->
+      <!-- End Log In page -->
+
+      <div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0" id="exampleModalLabel">Selecciona tus horarios</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (change)="onChangeResetHrs($event)">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                            <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                            <p class="text-muted font-13 mt-3 mb-2">Horarios de salida</p>
+                            <div class="checkbox checkbox-success form-check-inline" *ngFor="let hr of horaryOut">
+                                    <input type="checkbox" name="{{hr.fiId}}" (change)="onChangeHoraryOut($event)" [disabled]="isCheckedHO && (isCheckedNameHO!=hr.fiId)">
+                                    <label for="inlineCheckbox2"> {{hr.fcHour}} </label>
+                            </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                            <p class="text-muted font-13 mt-3 mb-2">Horarios de regreso</p>
+                            <div class="checkbox checkbox-pink form-check-inline" *ngFor="let hr of horaryReturn">
+                                    <input type="checkbox" name="{{hr.fiId}}" (change)="onChangeHoraryReturn($event)" [disabled]="isCheckedRO && (isCheckedNameRO!=hr.fiId)">
+                                    <label for="inlineCheckbox3"> {{hr.fcHour}} </label>
+                            </div>
+                            </div>
+                            </div>
+                        
+                        
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->    
