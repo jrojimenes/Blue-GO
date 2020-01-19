@@ -4,8 +4,8 @@ exports.default = {
     database: {
         connectionLimit: 10,
         host: 'localhost',
-        user: 'desarrollo',
-        password: 'D3sarr0ll0',
+        user: 'bluegoAdmin',
+        password: 'D3v3L0p',
         database: 'db_bluego'
     },
     server: {
